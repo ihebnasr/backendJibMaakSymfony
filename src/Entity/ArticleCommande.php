@@ -106,7 +106,7 @@ class ArticleCommande
         return $this;
     }
 
-    public function getIdcmd(): ?Commande
+    public function getIdcmd()
     {
         return $this->idcmd;
     }
@@ -118,7 +118,7 @@ class ArticleCommande
         return $this;
     }
 
-    public function getIdart(): ?Article
+    public function getIdart()
     {
         return $this->idart;
     }

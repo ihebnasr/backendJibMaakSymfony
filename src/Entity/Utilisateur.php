@@ -116,7 +116,7 @@ class Utilisateur
         return $this;
     }
 
-    public function getIdadmin(): ?Administrateur
+    public function getIdadmin()
     {
         return $this->idadmin;
     }
@@ -128,7 +128,7 @@ class Utilisateur
         return $this;
     }
 
-    public function getIdliv(): ?Livreur
+    public function getIdliv()
     {
         return $this->idliv;
     }
@@ -140,7 +140,7 @@ class Utilisateur
         return $this;
     }
 
-    public function getIdclient(): ?Clients
+    public function getIdclient()
     {
         return $this->idclient;
     }

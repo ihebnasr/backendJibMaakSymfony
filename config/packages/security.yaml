@@ -41,7 +41,13 @@ security:
             guard:
                 authenticators:
                 - lexik_jwt_authentication.jwt_token_authenticator
-
+        Articles:
+                    pattern: ^/api/Articles
+                    methods: [GET, POST, PUT, PATCH, DELETE]
+                    stateless: true
+                    guard:
+                        authenticators:
+                        - lexik_jwt_authentication.jwt_token_authenticator
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -61,6 +67,12 @@ security:
         path: ^/api/categories,
         roles: IS_AUTHENTICATED_FULLY,
         methods: [GET, POST, PUT, PATCH, DELETE],
+        }
+        - {
+        path: ^/api/Articles,
+        roles: IS_AUTHENTICATED_FULLY,
+        methods: [GET, POST, PUT, PATCH, DELETE],
+
         }
 
     

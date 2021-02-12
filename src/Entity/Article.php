@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Webmozart\Assert\Assert;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -10,21 +11,20 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * Article
  *
  * @ORM\Table(name="article", indexes={@ORM\Index(name="code_cate", columns={"code_cate"})})
- * @ORM\Entity
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
  * @ApiResource(
  *     collectionOperations={
  *          "get",
- *          "post"={"security"="is_granted(’ROLE_ADMIN’)"}
+ *          "post"
  *     },
  *     itemOperations={
  *          "get",
- *          "put"={"security"="is_granted(’ROLE_ADMIN’)"},
- *          "delete"={"security"="is_granted(’ROLE_ADMIN’)"}
+ *          "put",
+ *           "patch",
+ *          "delete"={"security"="is_granted('ROLE_ADMIN')"}
  *     },
  *    
  * )
-
  */
 class Article
 {
@@ -47,61 +47,22 @@ class Article
     private $designationArt;
 
     /**
-     * @var string
+     * @var float
      *
-     * @ORM\Column(name="prix_art", type="decimal", precision=10, scale=3, nullable=false)
-     * @Groups("post:read")
+     * @ORM\Column(name="prix_art", type="float", precision=10, scale=3, nullable=true)
+     * @Groups("post:read")  
      */
     private $prixArt;
 
     /**
-     * @var \DateTime
+     * @var string|null
      *
-     * @ORM\Column(name="date_cration", type="datetime", nullable=false)
-     * @Groups("post:read")
-     */
-    private $dateCration;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_modif_art", type="datetime", nullable=false)
-     * @Groups("post:read")
-     */
-    private $dateModifArt;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="actif", type="integer", nullable=true)
-     * @Groups("post:read")
-     */
-    private $actif;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="image", type="integer", nullable=true)
+     * @ORM\Column(name="image", type="string", nullable=true)
      * @Groups("post:read")
      */
     private $image;
 
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="prix_promo_art", type="integer", nullable=true)
-     * @Groups("post:read")
-     */
-    private $prixPromoArt;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="en_promo", type="integer", nullable=true)
-     * @Groups("post:read")
-     */
-    private $enPromo;
-
+  
     /**
      * @var \Categories
      *
@@ -135,81 +96,22 @@ class Article
         return $this->prixArt;
     }
 
-    public function setPrixArt(string $prixArt): self
+    public function setPrixArt(float $prixArt): self
     {
         $this->prixArt = $prixArt;
 
         return $this;
     }
 
-    public function getDateCration(): ?\DateTimeInterface
-    {
-        return $this->dateCration;
-    }
-
-    public function setDateCration(\DateTimeInterface $dateCration): self
-    {
-        $this->dateCration = $dateCration;
-
-        return $this;
-    }
-
-    public function getDateModifArt(): ?\DateTimeInterface
-    {
-        return $this->dateModifArt;
-    }
-
-    public function setDateModifArt(\DateTimeInterface $dateModifArt): self
-    {
-        $this->dateModifArt = $dateModifArt;
-
-        return $this;
-    }
-
-    public function getActif(): ?int
-    {
-        return $this->actif;
-    }
-
-    public function setActif(?int $actif): self
-    {
-        $this->actif = $actif;
-
-        return $this;
-    }
-
-    public function getImage(): ?int
+    
+    public function getImage(): ?string
     {
         return $this->image;
     }
 
-    public function setImage(?int $image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
-
-        return $this;
-    }
-
-    public function getPrixPromoArt(): ?int
-    {
-        return $this->prixPromoArt;
-    }
-
-    public function setPrixPromoArt(?int $prixPromoArt): self
-    {
-        $this->prixPromoArt = $prixPromoArt;
-
-        return $this;
-    }
-
-    public function getEnPromo(): ?int
-    {
-        return $this->enPromo;
-    }
-
-    public function setEnPromo(?int $enPromo): self
-    {
-        $this->enPromo = $enPromo;
 
         return $this;
     }

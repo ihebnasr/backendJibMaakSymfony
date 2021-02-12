@@ -55,11 +55,8 @@ class ArticleRepository extends ServiceEntityRepository
         ->select('M')
         ->innerJoin('M.codeCate','c')
         ->where('M.codeCate= c.codeCate')
-        ->andWhere('M.actif =:val')
         ->andWhere('c.codeCate = :code')
         ->setParameter('code',$code)
-        ->setParameter('val',1)
-        ->orderBy('M.prixPromoArt','DESC')
         ->getQuery()
         ->getResult();
     }

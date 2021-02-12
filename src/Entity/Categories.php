@@ -12,17 +12,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="categories")
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="App\Repository\CategoriesRepository")
- * @ApiResource(
- *      collectionOperations={
- *          "get",
- *          "post"
- *     },
- *     itemOperations={
- *          "get",
- *          "put",
- *          "delete"
- *     },
- *    )
+ * @ApiResource( )
  */
 class Categories
 {

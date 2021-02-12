@@ -11,18 +11,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
  * @ORM\Table(name="clients")
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="App\Repository\clientsRepository")
- * @ApiResource(
- *       collectionOperations={
- *          "get",
- *          "post"={"security"="is_granted(’ROLE_ADMIN’)"}
- *     },
- *     itemOperations={
- *          "get",
- *          "put"={"security"="is_granted(’ROLE_ADMIN’)"},
- *          "delete"={"security"="is_granted(’ROLE_ADMIN’)"}
- *     },
- *    
- * )
+ * @ApiResource()
  */
 class Clients
 {
